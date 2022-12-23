@@ -2,7 +2,7 @@ import { readFile } from 'fs/promises'
 import { join, isAbsolute } from 'path'
 
 // SOURCE: https://github.com/hannoeru/esbuild-plugin-raw
-export default function rawPlugin() {
+export default function textLoader() {
     const namespace = 'text-loader'
     const filter = /\?text$/
     return {
