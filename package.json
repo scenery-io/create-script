@@ -1,36 +1,37 @@
 {
-  "name": "caballero",
-  "displayName": "Caballero",
-  "version": "0.0.1",
-  "description": "A starter for writing Cavalry scripts",
-  "main": "index.js",
-  "type": "module",
-  "private": true,
-  "engines": {
-    "node": ">=16.7.0"
-  },
-  "scripts": {
-    "start": "cross-env NODE_ENV=development npm run build",
-    "release": "cross-env NODE_ENV=production npm run build",
-    "build": "node ./scripts/build.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Klustre/caballero.git"
-  },
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/Klustre/caballero/issues"
-  },
-  "homepage": "https://github.com/Klustre/caballero#readme",
-  "devDependencies": {
-    "cavalry-types": "github:klustre/cavalry-types",
-    "cross-env": "^7.0.3",
-    "dotenv": "^16.0.3",
-    "esbuild": "^0.16.10",
-    "esbuild-copy-static-files": "^0.1.0",
-    "fs-extra": "^11.1.0",
-    "glob": "^8.0.3"
-  }
+	"name": "caballero",
+	"displayName": "Caballero",
+	"version": "0.0.1",
+	"description": "A starter for writing Cavalry scripts",
+	"main": "index.js",
+	"type": "module",
+	"private": true,
+	"engines": {
+		"node": ">=16.7.0"
+	},
+	"scripts": {
+		"start": "cross-env NODE_ENV=development npm run build",
+		"release": "cross-env NODE_ENV=production npm run build",
+		"build": "node ./scripts/build.js",
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/Klustre/caballero.git"
+	},
+	"license": "MIT",
+	"bugs": {
+		"url": "https://github.com/Klustre/caballero/issues"
+	},
+	"homepage": "https://github.com/Klustre/caballero#readme",
+	"devDependencies": {
+		"cavalry-types": "github:klustre/cavalry-types",
+		"cross-env": "^7.0.3",
+		"dotenv": "^16.0.3",
+		"esbuild": "^0.16.10",
+		"esbuild-copy-static-files": "^0.1.0",
+		"fs-extra": "^11.1.0",
+		"glob": "^8.0.3",
+		"prettier": "^2.8.1"
+	}
 }
