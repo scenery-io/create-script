@@ -6,7 +6,7 @@ import fs from 'fs-extra'
 import glob from 'glob'
 import 'dotenv/config'
 
-const entryPoints = glob.sync('src/*.js')
+const entryPoints = glob.sync('src/*.*(js|ts)')
 const devmode = process.env.NODE_ENV === 'development'
 const outdir = devmode ? 'build' : 'dist'
 const pkg = await fs.readJson('./package.json')
@@ -19,7 +19,7 @@ const define = {
 }
 
 for (const key in process.env) {
-    // NOTE: Windows specific fix
+    // NOTE: Ignores offending Windows keys
     const invalid = key.includes('(x86)')
     if (!invalid) {
         define[key] = JSON.stringify(process.env[key])

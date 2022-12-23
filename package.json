@@ -25,6 +25,7 @@
   },
   "homepage": "https://github.com/Klustre/caballero#readme",
   "devDependencies": {
+    "cavalry-types": "github:klustre/cavalry-types",
     "cross-env": "^7.0.3",
     "dotenv": "^16.0.3",
     "esbuild": "^0.16.10",
