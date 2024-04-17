@@ -2,12 +2,6 @@
 
 A starter for writing [Cavalry scripts](https://docs.cavalry.scenegroup.co/tech-info/scripting/getting-started/)
 
-## TODO
-
--   [ ] Add example code to `src/main.js`
--   [ ] Install `cavalry-types` once public
--   [ ] Finalise readme
-
 ## Contents
 
 -   [Cavalry Scripting](#cavalry-scripting)
