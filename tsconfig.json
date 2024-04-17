@@ -5,7 +5,7 @@
 		"allowJs": true,
 		"checkJs": true,
 		"noEmit": true,
-		"types": ["./node_modules/cavalry-types"],
+		"types": ["@scenery/cavalry-types"],
 		"esModuleInterop": true
 	}
 }

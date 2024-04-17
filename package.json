@@ -25,13 +25,13 @@
 	},
 	"homepage": "https://github.com/Klustre/caballero#readme",
 	"devDependencies": {
-		"cavalry-types": "github:klustre/cavalry-types",
+		"@scenery/cavalry-types": "^0.5.0",
 		"cross-env": "^7.0.3",
-		"dotenv": "^16.0.3",
-		"esbuild": "^0.16.10",
+		"dotenv": "^16.4.5",
+		"esbuild": "^0.20.2",
 		"esbuild-copy-static-files": "^0.1.0",
-		"fs-extra": "^11.1.0",
-		"glob": "^8.0.3",
-		"prettier": "^2.8.1"
+		"fs-extra": "^11.2.0",
+		"glob": "^10.3.12",
+		"prettier": "^3.2.5"
 	}
 }
