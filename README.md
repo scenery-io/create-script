@@ -2,14 +2,16 @@
 
 A starter for writing [Cavalry scripts](https://docs.cavalry.scenegroup.co/tech-info/scripting/getting-started/)
 
+> [!TIP]
+> If you're new to the Javascript ecosystem read our [getting started](./GETTING-STARTED.md) guide. The following info assumes you're familiar with [NodeJS](https://nodejs.org/) and [npm](https://www.npmjs.com/).
+
 ## Quick Start
 
-Quickly start a new script by running the commands below. Assumes you have Node installed.
+Create a new script template by running the commands below. This requires [NodeJS](https://nodejs.org/) to be installed.
 
 ```
-npm create @scenery my-script
+npm create @scenery/script my-script
 cd my-script
-npm install
 npm run dev
 ```
 
@@ -19,18 +21,15 @@ npm run dev
 -   [Development](#development)
 -   [Release](#release)
 -   [Entrypoints](#entrypoints)
--   [Debugging](#debugging)
 -   [Autocompletion](#autocompletion)
--   [Typescript](#typescript)
 -   [Environment Variables](#environment-variables)
 -   [Import Files as Text](#import-files-as-text)
--   [Import Images as `base64`](#import-images-as-base64)
+-   [Import Images](#import-images)
 -   [Import Node Modules](#import-node-modules)
 -   [Static Files](#static-files)
+-   [Debugging](#debugging)
+-   [Typescript](#typescript)
 -   [Minification](#minification)
-
-> [!TIP]
-> If you're new to the Javascript ecosystem read our [getting started](./GETTING-STARTED.md) guide. The following info assumes you're familiar with [NodeJS](https://nodejs.org/) and [`npm`](https://www.npmjs.com/).
 
 ## Cavalry Scripting
 
@@ -61,25 +60,11 @@ This will bundle and minify your source files into the `dist` folder.
 
 ## Entrypoints
 
-All `.js` and `.ts` files in the root of the `src` folder are considered an entrypoint. Multiple entrypoints will result in multiple scripts being bundled separately, keeping the same name as their entrypoint. If there's a single entrypoint it will be renamed to [`name` from `package.json`](/package.json#L2).
-
-## Debugging
-
-<!-- TODO: Note about `console` APIs -->
-
-If you're using [VSCode](https://code.visualstudio.com/) you can install the recommended [Stallion](https://marketplace.visualstudio.com/items?itemName=Supasupply.stallion) extension which allows you to send scripts to Cavalry.
-
-Open the bundled script from the `build` or `dist` folder and run the `Send to Cavalry` command. Further details in the [Stallion docs](https://github.com/klustre/stallion#usage).
+All `.js` and `.ts` files in the root of the `src` folder are considered an entrypoint. Multiple entrypoints will result in multiple scripts being bundled separately, keeping the same name as their entrypoint.
 
 ## Autocompletion
 
 TODO
-
-## Typescript
-
-This template is set up for Javascript with type checking enabled. But you can just start using `.ts` files and you're good to go. Remove `allowJs` and `checkJs` from [`tsconfig.json`](./tsconfig.json) to strictly support TypeScript only.
-
-The [esbuild](https://github.com/evanw/esbuild) bundler doesn't do any type checking. You still have to use [`tsc`](https://www.typescriptlang.org/docs/handbook/compiler-options.html) for that. Using TypeScript with `esbuild` comes with some [caveats](https://esbuild.github.io/content-types/#typescript-caveats).
 
 ## Environment Variables
 
@@ -94,23 +79,50 @@ By default the bundler exposes:
 
 If you have a `.env` file it will automatically expose the variables by their name to all Javascript or Typescript files.
 
-## Import Files as Text
+## Import Images
 
-Adding the `?text` suffix to the path of an `import` statement will import the contents of that file as a string. Note that the contents will be imported as-is.
+Importing images (.png/.jpg) copies them to the assets folder and imports the path. Use the variable to construct the path to the image.
 
-## Import Images as `base64`
-
-Any `jpg` and `png` images are imported as `base64` strings. You can easily add support for other filetypes by adding them to the `loader` list in [`/bin/build.js`](/bin/build.js#L39-L42).
+```js
+import icon from './icons/scenery.png'
+const iconPath = `${ui.scriptLocation}/${icon}`
+const icon = new ui.Image(imagePath)
+```
 
 ## Import Node Modules
 
 After installing a [Node module](https://www.npmjs.com/), you can import it by simply using `import xyz from 'xyz'`. Note that they can't contain browser or Node APIs.
 
+## Import Files as Text
+
+Adding the `?text` suffix to the path of an `import` statement will import the contents of that file as a string. Note that the contents will be imported as-is.
+
+```js
+import expression from './modules/expression.js?text'
+api.set('javaScriptShape#1', {
+	'generator.expression': expression,
+})
+```
+
+<!-- ## Import Images as `base64`
+
+Any `jpg` and `png` images are imported as `base64` strings. You can easily add support for other filetypes by adding them to the `loader` list in [`/bin/build.js`](/bin/build.js#L39-L42). -->
+
 ## Static Files
 
-The contents of `/static` will be copied to the `build` folder. This is useful for icons, readme files, etc. Note that any changes in this folder will not be watched, so you need to run the bundler again or save a change in your source files.
+The contents of `/static` will be copied to the `build` folder. This is useful for readme files, etc. Note that any changes in this folder will not be watched, so you need to run the bundler again or save a change in your source files.
 
 The `_assets` folder inside `/static` is ignored by Cavalry. Read [the further details](/static/_assets/).
+
+## Debugging
+
+<!-- TODO: Note about `console` APIs -->
+
+## Typescript
+
+This template is set up for Javascript with type checking enabled. But you can just start using `.ts` files and you're good to go. Remove `allowJs` and `checkJs` from [`tsconfig.json`](./tsconfig.json) to strictly support TypeScript only.
+
+The [esbuild](https://github.com/evanw/esbuild) bundler doesn't do any type checking. You still have to use [`tsc`](https://www.typescriptlang.org/docs/handbook/compiler-options.html) for that. Using TypeScript with `esbuild` comes with some [caveats](https://esbuild.github.io/content-types/#typescript-caveats).
 
 ## Minification
 
