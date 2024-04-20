@@ -1,6 +1,17 @@
-# caballero
+# Script
 
 A starter for writing [Cavalry scripts](https://docs.cavalry.scenegroup.co/tech-info/scripting/getting-started/)
+
+## Quick Start
+
+Quickly start a new script by running the commands below. Assumes you have Node installed.
+
+```
+npm create @scenery my-script
+cd my-script
+npm install
+npm run dev
+```
 
 ## Contents
 
@@ -18,24 +29,27 @@ A starter for writing [Cavalry scripts](https://docs.cavalry.scenegroup.co/tech-
 -   [Static Files](#static-files)
 -   [Minification](#minification)
 
+> [!TIP]
+> If you're new to the Javascript ecosystem read our [getting started](./GETTING-STARTED.md) guide. The following info assumes you're familiar with [NodeJS](https://nodejs.org/) and [`npm`](https://www.npmjs.com/).
+
 ## Cavalry Scripting
 
 Some notes on the scripting environment in Cavalry:
 
 -   Every script has its own scope
--   Scripts can be [encrypted to `.jsc`](https://docs.cavalry.scenegroup.co/tech-info/release-notes/1-4-release-notes#scripting)
 -   Javascript engine is [V8 9.0](https://v8.dev/blog/v8-release-90)
 -   Ecmascript version is ~[2020 (11.0)](https://262.ecma-international.org/11.0/)
--   No browser APIs beyond [custom implementations](https://github.com/klustre/cavalry-types/types/browser.d.ts)
--   No support for Ecmascript modules
+-   No browser APIs other than [console](https://github.com/klustre/cavalry-types/types/browser.d.ts)
+-   No native support for Ecmascript modules
+-   Scripts can be encrypted to `.jsc` through [the editor](https://docs.cavalry.scenegroup.co/tech-info/scripting/script-uis/#introduction) and [the api](https://docs.cavalry.scenegroup.co/tech-info/scripting/api-module/#encrypttexttoencryptstring--string)
 
 ## Development
 
 ```
-npm install && npm start
+npm run dev
 ```
 
-This will start watching your source files and builds into the `build` folder.
+This will start watching your source files and automatically builds into the `build` folder on every file change.
 
 ## Release
 
@@ -51,6 +65,8 @@ All `.js` and `.ts` files in the root of the `src` folder are considered an entr
 
 ## Debugging
 
+<!-- TODO: Note about `console` APIs -->
+
 If you're using [VSCode](https://code.visualstudio.com/) you can install the recommended [Stallion](https://marketplace.visualstudio.com/items?itemName=Supasupply.stallion) extension which allows you to send scripts to Cavalry.
 
 Open the bundled script from the `build` or `dist` folder and run the `Send to Cavalry` command. Further details in the [Stallion docs](https://github.com/klustre/stallion#usage).
@@ -61,9 +77,9 @@ TODO
 
 ## Typescript
 
-Caballero is set up for Javascript with type checking enabled. But you can just start using `.ts` files and you're good to go. If you really hate Javascript you can remove `allowJs` and `checkJs` from `tsconfig.json`.
+This template is set up for Javascript with type checking enabled. But you can just start using `.ts` files and you're good to go. Remove `allowJs` and `checkJs` from [`tsconfig.json`](./tsconfig.json) to strictly support TypeScript only.
 
-The [esbuild](https://github.com/evanw/esbuild) bundler does not do any type checking. You still have to use [`tsc`](https://www.typescriptlang.org/docs/handbook/compiler-options.html) for that. Please read the [Typescript caveats](https://esbuild.github.io/content-types/#typescript-caveats) that come with using esbuild.
+The [esbuild](https://github.com/evanw/esbuild) bundler doesn't do any type checking. You still have to use [`tsc`](https://www.typescriptlang.org/docs/handbook/compiler-options.html) for that. Using TypeScript with `esbuild` comes with some [caveats](https://esbuild.github.io/content-types/#typescript-caveats).
 
 ## Environment Variables
 
@@ -84,15 +100,15 @@ Adding the `?text` suffix to the path of an `import` statement will import the c
 
 ## Import Images as `base64`
 
-Any `jpg` and `png` images are imported as `base64` strings. You can easily add support for other filetypes by adding them to the `loader` list in [`/scripts/build.js`](/scripts/build.js#L39-L42).
+Any `jpg` and `png` images are imported as `base64` strings. You can easily add support for other filetypes by adding them to the `loader` list in [`/bin/build.js`](/bin/build.js#L39-L42).
 
 ## Import Node Modules
 
-You can import Node modules by simply using `import xyz from 'xyz'`. Note that they can't contain browser or Node APIs.
+After installing a [Node module](https://www.npmjs.com/), you can import it by simply using `import xyz from 'xyz'`. Note that they can't contain browser or Node APIs.
 
 ## Static Files
 
-The contents of `/static` will be copied to the `outdir` whenever you run the bundler. This is useful for icons, readme files, etc. Note that any changes in this folder will not be watched, so you need to run the bundler again or save a change in your source files.
+The contents of `/static` will be copied to the `build` folder. This is useful for icons, readme files, etc. Note that any changes in this folder will not be watched, so you need to run the bundler again or save a change in your source files.
 
 The `_assets` folder inside `/static` is ignored by Cavalry. Read [the further details](/static/_assets/).
 
