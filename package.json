@@ -1,29 +1,28 @@
 {
-	"name": "caballero",
-	"displayName": "Caballero",
+	"name": "@scenery/script",
+	"displayName": "Script",
 	"version": "0.0.1",
 	"description": "A starter for writing Cavalry scripts",
 	"main": "index.js",
 	"type": "module",
-	"private": true,
 	"engines": {
 		"node": ">=16.7.0"
 	},
 	"scripts": {
-		"start": "cross-env NODE_ENV=development npm run build",
+		"dev": "cross-env NODE_ENV=development npm run build",
 		"release": "cross-env NODE_ENV=production npm run build",
-		"build": "node ./scripts/build.js",
+		"build": "node ./bin/build.js",
 		"test": "echo \"Error: no test specified\" && exit 1"
 	},
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/Klustre/caballero.git"
+		"url": "git+https://github.com/scenery-io/script.git"
 	},
 	"license": "MIT",
 	"bugs": {
-		"url": "https://github.com/Klustre/caballero/issues"
+		"url": "https://github.com/scenery-io/script/issues"
 	},
-	"homepage": "https://github.com/Klustre/caballero#readme",
+	"homepage": "https://github.com/scenery-io/script#readme",
 	"devDependencies": {
 		"@scenery/cavalry-types": "^0.5.0",
 		"cross-env": "^7.0.3",
