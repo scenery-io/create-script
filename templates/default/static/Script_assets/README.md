@@ -2,7 +2,7 @@
 
 <!-- TODO: Link to `ui.scriptLocation` -->
 
-If your script has assets (i.e. images), you should place them inside this `_assets` folder. Any directory ending with `_assets` will be hidden from the `Scripts` menu. Use `ui.scriptLocation` to build relative paths.
+If your script has assets (i.e. images), you should place them inside this `_assets` folder. Any directory ending with `_assets` will be hidden from the `Scripts` menu. Use [`ui.scriptLocation`](https://docs.cavalry.scenegroup.co/tech-info/scripting/script-uis/#scriptlocation--string) to build relative paths.
 
 For example:
 
@@ -19,6 +19,7 @@ button.setImage(`${ui.scriptLocation}/_assets/icon.png`)
 import image from "./images/bun.jpg";
 const outputPath = "/path/to/output/file.jpg";
 api.writeEncodedToBinaryFile(outputPath, image);
-``` -->
+```
 
 [Source](https://docs.cavalry.scenegroup.co/tech-info/scripting/api-module#writeencodedtobinaryfilestringfilepath-stringcontent---bool)
+-->

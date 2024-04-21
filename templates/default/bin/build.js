@@ -1,15 +1,15 @@
-import copyStaticFiles from 'esbuild-copy-static-files'
+import copy from './plugins/copy.js'
 import multiloader from './plugins/multiloader.js'
 import report from './plugins/report.js'
-import { context } from 'esbuild'
+import { context, build } from 'esbuild'
 import fs, { ensureDir, ensureSymlink } from 'fs-extra'
 import { glob } from 'glob'
 import 'dotenv/config'
 import { resolve, join } from 'path'
 import { platform, homedir } from 'os'
 
+const outdir = 'build'
 const devmode = process.env.NODE_ENV === 'development'
-const outdir = devmode ? 'build' : 'dist'
 const { name, displayName, version } = await fs.readJson('./package.json')
 const define = {
 	DEVMODE: JSON.stringify(devmode),
@@ -42,7 +42,7 @@ try {
 	console.log(error)
 }
 
-const ctx = await context({
+const options = {
 	define,
 	outdir,
 	bundle: true,
@@ -54,11 +54,14 @@ const ctx = await context({
 	minifyIdentifiers: !devmode,
 	plugins: [
 		multiloader({ name: displayName }),
-		copy({ dest: outdir }),
+		copy({ dest: outdir, ignore: ['release'] }),
 		report(),
 	],
-})
+}
 
 if (devmode) {
+	const ctx = await context()
 	await ctx.watch()
+} else {
+	await build(options)
 }

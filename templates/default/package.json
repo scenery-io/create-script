@@ -2,7 +2,6 @@
 	"name": "@scenery/script",
 	"displayName": "Script",
 	"version": "0.0.1",
-	"description": "A starter for writing Cavalry scripts",
 	"type": "module",
 	"private": true,
 	"engines": {
@@ -10,16 +9,17 @@
 	},
 	"scripts": {
 		"dev": "cross-env NODE_ENV=development npm run build",
-		"release": "cross-env NODE_ENV=production npm run build",
+		"release": "cross-env NODE_ENV=production npm run build && npm run package",
 		"build": "node ./bin/build.js",
+		"package": "node ./bin/package.js",
 		"test": "echo \"Error: no test specified\" && exit 1"
 	},
 	"devDependencies": {
 		"@scenery/cavalry-types": "^0.5.0",
+		"adm-zip": "^0.5.12",
 		"cross-env": "^7.0.3",
 		"dotenv": "^16.4.5",
 		"esbuild": "^0.20.2",
-		"esbuild-copy-static-files": "^0.1.0",
 		"fs-extra": "^11.2.0",
 		"glob": "^10.3.12",
 		"prettier": "^3.2.5"
