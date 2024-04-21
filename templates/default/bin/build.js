@@ -52,7 +52,11 @@ const ctx = await context({
 	entryPoints: await glob('src/*.*(js|ts)'),
 	minifyWhitespace: !devmode,
 	minifyIdentifiers: !devmode,
-	plugins: [multiloader(), copyStaticFiles({ dest: outdir }), report()],
+	plugins: [
+		multiloader({ name: displayName }),
+		copy({ dest: outdir }),
+		report(),
+	],
 })
 
 if (devmode) {

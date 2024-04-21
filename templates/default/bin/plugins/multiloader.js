@@ -2,7 +2,7 @@ import { copy, exists } from 'fs-extra'
 import { readFile } from 'fs/promises'
 import { basename, dirname, extname, join, resolve } from 'path'
 
-export default function () {
+export default function (options = { name: '' }) {
 	return {
 		name: 'multiloader',
 		setup(build) {
@@ -10,6 +10,7 @@ export default function () {
 				BASE64: /\?base64$/,
 				TEXT: /\?text$/,
 			}
+			const assetsName = `${options.name}_assets`
 			build.onResolve({ filter: /\.jpg|png$/i }, (args) => {
 				return {
 					namespace: 'copy-file',
@@ -22,8 +23,7 @@ export default function () {
 				async (args) => {
 					let warnings = []
 					const outdir = build.initialOptions.outdir
-					// TODO: Prefix `_assets` with script name
-					const assetsPath = join(outdir, '_assets')
+					const assetsPath = join(outdir, assetsName)
 					const filename = basename(args.path)
 					const ext = extname(filename)
 					if (ext === '.png' || ext === '.jpg') {
@@ -42,8 +42,7 @@ export default function () {
 					}
 					await copy(args.path, join(assetsPath, filename))
 					return {
-						// TODO: Prefix `_assets` with script name
-						contents: join('_assets', filename),
+						contents: join(assetsName, filename),
 						loader: 'text',
 						warnings,
 					}
