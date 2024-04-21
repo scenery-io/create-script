@@ -1,23 +1,4 @@
-# Default Template
-
-A starter template for writing [Cavalry scripts](https://docs.cavalry.scenegroup.co/tech-info/scripting/getting-started/)
-
-> [!TIP]
-> If you're new to the Javascript ecosystem read our [getting started](./GETTING-STARTED.md) guide. The following info assumes you're familiar with [Node](https://nodejs.org/) and [npm](https://www.npmjs.com/).
-
-## Quick Start
-
-Create a new script template by running the following command on the commandline. This will guide you through creating the template. It requires [Node](https://nodejs.org/) to be installed.
-
-```
-npm create @scenery/script my-script
-```
-
-Follow the prompts and run the following command to start developing.
-
-```
-cd my-script && npm run dev
-```
+# Template Script for Cavalry
 
 ## Contents
 
@@ -25,13 +6,13 @@ cd my-script && npm run dev
 -   [Development](#development)
 -   [Release](#release)
 -   [Entrypoints](#entrypoints)
--   [Autocompletion](#autocompletion)
 -   [Environment Variables](#environment-variables)
--   [Import Files as Text](#import-files-as-text)
 -   [Import Images](#import-images)
 -   [Import Node Modules](#import-node-modules)
+-   [Import Files as Text](#import-files-as-text)
 -   [Static Files](#static-files)
 -   [Debugging](#debugging)
+-   [Autocompletion](#autocompletion)
 -   [Typescript](#typescript)
 -   [Minification](#minification)
 
@@ -40,11 +21,12 @@ cd my-script && npm run dev
 Some notes on the scripting environment in Cavalry:
 
 -   Every script has its own scope
+-   No native support for Ecmascript modules
 -   Javascript engine is [V8 9.0](https://v8.dev/blog/v8-release-90)
 -   Ecmascript version is ~[2020 (11.0)](https://262.ecma-international.org/11.0/)
--   No browser APIs other than [console](https://github.com/klustre/cavalry-types/types/browser.d.ts)
--   No native support for Ecmascript modules
--   Scripts can be encrypted to `.jsc` through [the editor](https://docs.cavalry.scenegroup.co/tech-info/scripting/script-uis/#introduction) and [the api](https://docs.cavalry.scenegroup.co/tech-info/scripting/api-module/#encrypttexttoencryptstring--string)
+-   No browser APIs other than [console](https://github.com/scenery-io/cavalry-types/types/browser.d.ts)
+-   Scripts can be encrypted to `.jsc` through the [JavaScript editor](https://docs.cavalry.scenegroup.co/user-interface/menus/window-menu/javascript-editor/) and the [API](https://docs.cavalry.scenegroup.co/tech-info/scripting/api-module/#encrypttexttoencryptstring--string)
+-   There's no debugger. Use [`console`](https://github.com/scenery-io/cavalry-types/types/browser.d.ts) logging instead.
 
 ## Development
 
@@ -60,15 +42,14 @@ This will start watching your source files and automatically builds into the `bu
 npm run release
 ```
 
-This will bundle and minify your source files into the `dist` folder.
+This will bundle, minify and encrypt your script into the `build` folder. A zip file is created in `dist` together with the files from `static/release`.
+
+> [!IMPORTANT]
+> Encryption is done through the [Stallion](https://github.com/scenery-io/stallion) script. Make sure it is installed and open in Cavalry when running `npm run release`.
 
 ## Entrypoints
 
-All `.js` and `.ts` files in the root of the `src` folder are considered an entrypoint. Multiple entrypoints will result in multiple scripts being bundled separately, keeping the same name as their entrypoint.
-
-## Autocompletion
-
-TODO
+All `.js` and `.ts` files in the root of the `src` folder are considered an entrypoint. Multiple entrypoints will result in multiple scripts being bundled separately.
 
 ## Environment Variables
 
@@ -81,11 +62,14 @@ By default the bundler exposes:
 -   `PRODUCT_DISPLAY_NAME` which is the `displayName` in `package.json`
 -   `PRODUCT_VERSION` which is the `version` in `package.json`
 
-A `.env` file in the root will automatically expose its variables to all Javascript or Typescript files in the `src` folder.
+All variables in a `.env` file will be exposed to all Javascript or Typescript files in the `src` folder.
+
+> [!CAUTION]
+> Never commit a `.env` file to the repo. This may leak your secrets. Use a `.env.example` to note the env variables that are used in the code, without their values.
 
 ## Import Images
 
-Importing an image (.png/.jpg) will copy it to the assets folder and import the path. Use the variable to construct the path to the image.
+Importing an image (.png/.jpg) will copy the image to the `Script_assets` folder and import its path. Use the import variable to construct the path to the image.
 
 ```js
 import icon from './icons/scenery.png'
@@ -95,7 +79,20 @@ const icon = new ui.Image(imagePath)
 
 ## Import Node Modules
 
-After installing a [Node module](https://www.npmjs.com/), you can import it by using `import xyz from 'xyz'`. Note that they can't contain browser- or Node APIs.
+Install [Node modules](https://www.npmjs.com/) with
+
+```
+npm install [module-name] -D
+```
+
+After installing, import the module by using
+
+```
+import Name from 'module-name'
+```
+
+> [!IMPORTANT]
+> Node modules with any Node- or brower APIs will not work. These APIs are not supported in Cavalry.
 
 ## Import Files as Text
 
@@ -114,13 +111,26 @@ Any `jpg` and `png` images are imported as `base64` strings. You can easily add 
 
 ## Static Files
 
-The contents of the `static` folder will be copied to the `build` folder. This is useful for readme files, etc. Note that any changes in this folder will not be watched, so you need to run the bundler again or save a change in your source files.
+The contents of the `static/_assets` folder will be copied to the `build` folder Note that any changes in this folder will not be watched, so you need to run the bundler again or save a change in your code.
 
-The `_assets` folder inside `static` is ignored by Cavalry. Read [the further details](/static/_assets/).
+> [!TIP]
+> Use an `import` statement for images (ie. icons) instead of adding them to `static/_assets`. This comes with a [few benefits](#import-images).
+
+### Release
+
+All files in the `static/release` folder will be added the release zip after running `npm run release`.
+
+### Assets
+
+The `_assets` folder inside `static` is ignored by Cavalry and is used for any assets the script uses. Read [the further details](/static/_assets/).
 
 ## Debugging
 
-<!-- TODO: Note about `console` APIs -->
+TODO: Note about `console` APIs
+
+## Autocompletion
+
+TODO: Mention `cavalry-types`
 
 ## Typescript
 
