@@ -6,13 +6,13 @@
 -   [Development](#development)
 -   [Release](#release)
 -   [Entrypoints](#entrypoints)
--   [Environment Variables](#environment-variables)
 -   [Import Images](#import-images)
 -   [Import Node Modules](#import-node-modules)
 -   [Import Files as Text](#import-files-as-text)
 -   [Static Files](#static-files)
 -   [Debugging](#debugging)
 -   [Autocompletion](#autocompletion)
+-   [Environment Variables](#environment-variables)
 -   [Typescript](#typescript)
 -   [Minification](#minification)
 
@@ -50,22 +50,6 @@ This will bundle, minify and encrypt your script into the `build` folder. A zip 
 ## Entrypoints
 
 All `.js` and `.ts` files in the root of the `src` folder are considered an entrypoint. Multiple entrypoints will result in multiple scripts being bundled separately.
-
-## Environment Variables
-
-All variables are replaced by their values upon bundling.
-
-By default the bundler exposes:
-
--   `DEVMODE` is `true` when `NODE_ENV` is `development`
--   `PRODUCT_NAME` which is the `name` in `package.json`
--   `PRODUCT_DISPLAY_NAME` which is the `displayName` in `package.json`
--   `PRODUCT_VERSION` which is the `version` in `package.json`
-
-All variables in a `.env` file will be exposed to all Javascript or Typescript files in the `src` folder.
-
-> [!CAUTION]
-> Never commit a `.env` file to the repo. This may leak your secrets. Use a `.env.example` to note the env variables that are used in the code, without their values.
 
 ## Import Images
 
@@ -131,6 +115,22 @@ TODO: Note about `console` APIs
 ## Autocompletion
 
 TODO: Mention `cavalry-types`
+
+## Environment Variables
+
+All variables are replaced by their values upon bundling.
+
+By default the bundler exposes:
+
+-   `DEVMODE` is `true` when `NODE_ENV` is `development`
+-   `PRODUCT_NAME` which is the `name` in `package.json`
+-   `PRODUCT_DISPLAY_NAME` which is the `displayName` in `package.json`
+-   `PRODUCT_VERSION` which is the `version` in `package.json`
+
+All variables in a `.env` file will be exposed to all Javascript or Typescript files in the `src` folder.
+
+> [!CAUTION]
+> Never commit a `.env` file to the repo. This may leak your secrets. Use a `.env.example` to note the env variables that are used in the code, without their values.
 
 ## Typescript
 
