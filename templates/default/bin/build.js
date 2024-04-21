@@ -54,7 +54,11 @@ const options = {
 	minifyIdentifiers: !devmode,
 	plugins: [
 		multiloader({ name: displayName }),
-		copy({ dest: outdir, ignore: ['release'] }),
+		copy({
+			src: 'static/_assets',
+			dest: `${outdir}/${displayName}_assets`,
+			ignore: ['release'],
+		}),
 		report(),
 	],
 }
