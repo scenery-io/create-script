@@ -14,7 +14,7 @@ A starter template for writing [Cavalry scripts](https://docs.cavalry.scenegroup
 -   Autocomplete for the whole Cavalry API
 -   Package scripts in a zip with assets
 -   Bundle multiple scripts together
--   Write in Typescript
+-   Write in TypeScript or JavaScript
 
 ## Quick Start
 
@@ -32,3 +32,7 @@ Follow the prompts and run the following command in the newly created folder to 
 ```
 npm run dev
 ```
+
+## Documentation
+
+Further details in the [template readme](./templates/default/).
