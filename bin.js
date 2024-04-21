@@ -1,16 +1,7 @@
 #!/usr/bin/env node
 import { existsSync, readFileSync, readdirSync } from 'fs'
 import * as p from '@clack/prompts'
-import {
-	bgCyan,
-	black,
-	bold,
-	cyan,
-	grey,
-	yellow,
-	underline,
-	green,
-} from 'kleur/colors'
+import { bgCyan, black, bold, cyan, underline } from 'kleur/colors'
 import { setTimeout } from 'node:timers/promises'
 import { join } from 'path'
 
