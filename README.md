@@ -21,4 +21,14 @@ npm run dev
 
 ## Features
 
-TODO
+-   Super fast bundling on changes
+-   Import EcmaScript and Node modules
+-   Encrypt scripts through [Stallion](https://github.com/scenery-io/stallion)
+-   Import icons and include them as assets
+-   Autocomplete for whole the Cavalry API
+-   Bundle multiple scripts together
+-   Package scripts in a zip with assets
+-   Write in Typescript
+
+> [!NOTE]
+> Want to publish your script on [Scenery](https://scenery.io)? Come talk to us on [Discord](https://discord.com/invite/dAmKYcfaff) or [send us a message](https://scenery.io/support)!

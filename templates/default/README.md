@@ -87,7 +87,7 @@ npm install [module-name] -D
 
 After installing, import the module by using
 
-```
+```js
 import Name from 'module-name'
 ```
 
@@ -96,7 +96,7 @@ import Name from 'module-name'
 
 ## Import Files as Text
 
-Adding the `?text` suffix to the path of an `import` statement will import that file as a string. Note that the contents will be imported as-is.
+Adding a `?text` suffix to the path of an `import` statement will import that file as a string. Note that the contents will be imported as-is.
 
 ```js
 import expression from './modules/expression.js?text'
@@ -111,18 +111,18 @@ Any `jpg` and `png` images are imported as `base64` strings. You can easily add 
 
 ## Static Files
 
-The contents of the `static/_assets` folder will be copied to the `build` folder Note that any changes in this folder will not be watched, so you need to run the bundler again or save a change in your code.
+The contents of the `static/_assets` folder will be copied to the `build` folder/ Note that any changes in this folder will not be watched, so you need to run the bundler again or save a change in the code.
 
 > [!TIP]
 > Use an `import` statement for images (ie. icons) instead of adding them to `static/_assets`. This comes with a [few benefits](#import-images).
 
 ### Release
 
-All files in the `static/release` folder will be added the release zip after running `npm run release`.
+All files in the `static/release` folder will be added the release zip after running [`npm run release`](#release).
 
 ### Assets
 
-The `_assets` folder inside `static` is ignored by Cavalry and is used for any assets the script uses. Read [the further details](/static/_assets/).
+The `_assets` folder inside `static` is ignored by Cavalry and is used for any assets that the script uses. Read [the further details](/static/_assets/).
 
 ## Debugging
 
