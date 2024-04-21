@@ -60,7 +60,7 @@ const options = {
 }
 
 if (devmode) {
-	const ctx = await context()
+	const ctx = await context(options)
 	await ctx.watch()
 } else {
 	await build(options)
