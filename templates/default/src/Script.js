@@ -1,44 +1,61 @@
-import scenery from './icons/scenery.png'
+import badge from './icons/badge@2x.png'
 import { createShape } from './modules/shape.js'
+// Import anything as text by appending `?text`
+import markdown from './text/publish.md?text'
 
 // Global constants like `PRODUCT_DISPLAY_NAME` are replaced at build time
 ui.setTitle(PRODUCT_DISPLAY_NAME)
-const version = new ui.Label(`## ${PRODUCT_NAME} ${PRODUCT_VERSION}`)
-version.setAlignment(1)
+const version = new ui.Label(`## ${PRODUCT_DISPLAY_NAME} ${PRODUCT_VERSION}`)
+
+const main = new ui.HLayout()
+const header = new ui.HLayout()
+const content = new ui.VLayout()
 
 // The `scenery` image is copied to the assets folder and imported as a path
-const imagePath = `${ui.scriptLocation}/${scenery}`
-console.log(imagePath)
+const badgePath = `${ui.scriptLocation}/${badge}`
+const badgeImage = new ui.Image(badgePath)
+console.log(badgePath)
+header.setSpaceBetween(12)
+header.addStretch()
+header.add(badgeImage, version)
+header.addStretch()
 
-const jsBtn = new ui.Button('Create JavaScript Shape')
-jsBtn.setFixedHeight(32)
+const buttons = new ui.HLayout()
+const createBtn = new ui.Button(' Create JavaScript Shape ')
+createBtn.setFixedHeight(32)
 // Run function from an imported module
-jsBtn.onClick = createShape
+createBtn.onClick = createShape
+buttons.add(createBtn)
 
-const mainLayout = new ui.VLayout()
-mainLayout.setMargins(64, 0, 64, 0)
-const layout = new ui.HLayout()
-layout.addStretch()
-layout.add(jsBtn)
-layout.addStretch()
-
-const publishText = new ui.Label(
-	'Want to publish on Scenery? Come talk to us on [Discord](https://discord.com/invite/dAmKYcfaff) or send us [a message](https://scenery.io/support?source=create-script)!'
-)
+const text = new ui.HLayout()
+text.addStretch()
+const publishText = new ui.Label(markdown)
 publishText.setFixedWidth(200)
 publishText.setAlignment(1)
+text.add(publishText)
+text.addStretch()
 
-mainLayout.add(version, layout, publishText)
-mainLayout.addStretch()
+main.addStretch()
+main.add(content)
+main.addStretch()
+
+content.setSpaceBetween(16)
+content.addStretch()
+content.add(header, buttons)
+content.addStretch()
+content.add(text)
 
 // Only run this code in DEVMODE
 if (DEVMODE) {
-	const testBtn = new ui.Button('Test Button')
+	const testBtn = new ui.Button(' Test Button ')
+	testBtn.setFixedHeight(32)
 	testBtn.onClick = () => {
-		console.log("I don't appear in the production version")
+		console.warn("I don't appear in the production version")
 	}
-	mainLayout.add(testBtn)
+	buttons.add(testBtn)
 }
 
-ui.add(mainLayout)
+ui.add(main)
+ui.setMinimumWidth(320)
+ui.setMinimumHeight(230)
 ui.show()
