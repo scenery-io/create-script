@@ -108,44 +108,52 @@ The `_assets` folder is ignored by Cavalry and is used for any assets that the s
 
 There is no debugger, so console logging is used instead. The following methods, except for `debug`, are printed to Cavalry's [Message Bar](https://docs.cavalry.scenegroup.co/user-interface/menus/window-menu/message-bar/).
 
+### Log
+
+Typically used in testing. Printed in green.
+
 ```ts
 console.log(msg: string)
 ```
 
-Typically used in testing. Printed in green.
+### Info
+
+Confirm when something expected has happened. Printed in green.
 
 ```ts
 console.info(msg: string)
 ```
 
-Confirm when something expected has happened. Printed in green.
+### Warn
+
+Warn a user when they've done something unexpected. Printed in yellow.
 
 ```ts
 console.warn(msg: string)
 ```
 
-Warn a user when they've done something unexpected. Printed in yellow.
+### Error
+
+Flag when something has gone wrong. Printed in red.
 
 ```ts
 console.error(msg: string)
 ```
 
-Flag when something has gone wrong. Printed in red.
-
-### Debug Console
-
-On Windows the debug console is opened on start and remains open.
-
-To open the Debug Console on Mac run:
-
-```bash
-/Applications/Cavalry.app/Contents/MacOS/Cavalry
-```
+### Debug
 
 Print a message to the terminal when Cavalry is launched from the command line.
 
 ```ts
 console.debug(msg: string)
+```
+
+On Windows the debug console is opened on start and remains open.
+
+To open the Debug Console on Mac, run this command from the Terminal.
+
+```bash
+/Applications/Cavalry.app/Contents/MacOS/Cavalry
 ```
 
 ## Autocompletion
