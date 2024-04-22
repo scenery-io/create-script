@@ -32,11 +32,13 @@ export default function (options = { name: '' }) {
 						const path2x = join(importdir, filename2x)
 						const output2x = join(assetsPath, filename2x)
 						const has2x = await exists(path2x)
-						if (!has2x) {
+						const ignore = filename.includes('@2x')
+						if (!has2x && !ignore) {
 							warnings.push({
 								text: `Missing @2x version of ${filename} in ${importdir}`,
 							})
-						} else {
+						}
+						if (has2x && !ignore) {
 							await copy(path2x, output2x)
 						}
 					}
@@ -68,6 +70,7 @@ export default function (options = { name: '' }) {
 			// 	}
 			// )
 			build.onResolve({ filter: Suffix.TEXT }, (args) => {
+				// TODO: Watch file for changes
 				return {
 					namespace: 'text-file',
 					path: resolve(
