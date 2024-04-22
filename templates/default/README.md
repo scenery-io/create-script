@@ -158,9 +158,7 @@ To open the Debug Console on Mac, run this command from the Terminal.
 
 ## Autocompletion
 
-Autocompletion for the Cavalry API is enabled for all JavaScript and TypeScript files inside the `src` folder. This is made possible by the [`cavalry-types`](https://github.com/scenery-io/cavalry-types/).
-
-See its [readme](https://github.com/scenery-io/cavalry-types/tree/main?tab=readme-ov-file#cavalry-types) for further details.
+Autocompletion for the Cavalry API is enabled for all JavaScript and TypeScript files inside the `src` folder. This is made possible by the [`cavalry-types`](https://github.com/scenery-io/cavalry-types/). See its [readme](https://github.com/scenery-io/cavalry-types/tree/main?tab=readme-ov-file#cavalry-types) for further details.
 
 ## Environment Variables
 
