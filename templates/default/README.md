@@ -57,8 +57,8 @@ Importing an image (.png/.jpg) will copy the image to the `Script_assets` folder
 
 ```js
 import icon from './icons/scenery.png'
-const iconPath = `${ui.scriptLocation}/${icon}`
-const icon = new ui.Image(imagePath)
+const imagePath = `${ui.scriptLocation}/${icon}`
+const image = new ui.Image(imagePath)
 ```
 
 ## Import Node Modules
@@ -89,10 +89,6 @@ api.set('javaScriptShape#1', {
 })
 ```
 
-<!-- ## Import Images as `base64`
-
-Any `jpg` and `png` images are imported as `base64` strings. You can easily add support for other filetypes by adding them to the `loader` list in [`/bin/build.js`](/bin/build.js#L39-L42). -->
-
 ## Static Files
 
 The contents of the `static/_assets` folder will be copied to the `build` folder. Note that any changes in this folder will not be watched, so you need to run the bundler again or save a change in the code.
@@ -106,15 +102,57 @@ All files in the `static/release` folder will be added the release zip after run
 
 ### Assets
 
-The `_assets` folder is ignored by Cavalry and is used for any assets that the script uses. Read [the further details](/static/_assets/).
+The `_assets` folder is ignored by Cavalry and is used for any assets that the script uses. Read [the further details](./static/_assets/).
 
 ## Debugging
 
-TODO: Note about `console` APIs
+There is no debugger, so console logging is used instead. The following methods, except for `debug`, are printed to Cavalry's [Message Bar](https://docs.cavalry.scenegroup.co/user-interface/menus/window-menu/message-bar/).
+
+```ts
+console.log(msg: string)
+```
+
+Typically used in testing. Printed in green.
+
+```ts
+console.info(msg: string)
+```
+
+Confirm when something expected has happened. Printed in green.
+
+```ts
+console.warn(msg: string)
+```
+
+Warn a user when they've done something unexpected. Printed in yellow.
+
+```ts
+console.error(msg: string)
+```
+
+Flag when something has gone wrong. Printed in red.
+
+### Debug Console
+
+On Windows the debug console is opened on start and remains open.
+
+To open the Debug Console on Mac run:
+
+```bash
+/Applications/Cavalry.app/Contents/MacOS/Cavalry
+```
+
+Print a message to the terminal when Cavalry is launched from the command line.
+
+```ts
+console.debug(msg: string)
+```
 
 ## Autocompletion
 
-TODO: Mention `cavalry-types`
+Autocompletion for the Cavalry API is enabled for all JavaScript and TypeScript files inside the `src` folder. This is made possible by the [`cavalry-types`](https://github.com/scenery-io/cavalry-types/).
+
+See its [readme](https://github.com/scenery-io/cavalry-types/tree/main?tab=readme-ov-file#cavalry-types) for further details.
 
 ## Environment Variables
 
