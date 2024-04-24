@@ -8,34 +8,15 @@ import { glob } from 'glob'
 import 'dotenv/config'
 import { resolve, join } from 'path'
 import { platform, homedir } from 'os'
-import { lstat, unlink } from 'fs/promises'
+import { lstat, rm, unlink } from 'fs/promises'
 import ora from 'ora'
 
 const outdir = 'build'
 const devmode = process.env.NODE_ENV === 'development'
+const { name, displayName, version } = await fs.readJson('./package.json')
 const isMac = platform() === 'darwin'
 const appData = isMac ? '/Library/Application Support' : '/AppData/Roaming'
-const { name, displayName, version } = await fs.readJson('./package.json')
 const scriptPath = join(homedir(), appData, 'Cavalry', 'Scripts', displayName)
-
-try {
-	if (existsSync(scriptPath)) {
-		const link = await lstat(scriptPath)
-		if (!link.isSymbolicLink() && readdirSync(scriptPath).length) {
-			throw new Error(`Folder exists, please rename ${scriptPath}`)
-		}
-		await unlink(scriptPath)
-	}
-	await ensureDir(outdir)
-	await ensureSymlink(resolve(outdir), scriptPath)
-} catch (error) {
-	const formatted = await formatMessages([{ text: error.message }], {
-		kind: 'error',
-		color: true,
-	})
-	console.error(formatted.join(''))
-	process.exit(1)
-}
 
 const define = {
 	DEVMODE: JSON.stringify(devmode),
@@ -78,6 +59,33 @@ if (devmode) {
 } else {
 	const spinner = ora('Building…\n')
 	spinner.start()
-	await build({ ...options, logLevel: 'warning' })
-	spinner.succeed('Built')
+	try {
+		await rm(outdir, { recursive: true, force: true })
+		await build({ ...options, logLevel: 'warning' })
+		spinner.succeed('Built')
+	} catch (error) {
+		spinner.fail(error.message)
+		console.log()
+		process.exit(1)
+	}
+}
+
+try {
+	if (existsSync(scriptPath)) {
+		const link = await lstat(scriptPath)
+		const nonEmptyFolder =
+			!link.isSymbolicLink() && readdirSync(scriptPath).length
+		if (nonEmptyFolder) {
+			throw new Error(`Folder exists, please rename ${scriptPath}`)
+		}
+		await unlink(scriptPath)
+	}
+	await ensureDir(outdir)
+	await ensureSymlink(resolve(outdir), scriptPath)
+} catch (error) {
+	const formatted = await formatMessages([{ text: error.message }], {
+		kind: 'warning',
+		color: true,
+	})
+	console.error(formatted.join(''))
 }
