@@ -11,10 +11,10 @@ const main = new ui.HLayout()
 const header = new ui.HLayout()
 const content = new ui.VLayout()
 
-// The `scenery` image is copied to the assets folder and imported as a path
+// The `badge` image is copied to the assets folder and imported as a path
 const badgePath = `${ui.scriptLocation}/${badge}`
-const badgeImage = new ui.Image(badgePath)
 console.log(badgePath)
+const badgeImage = new ui.Image(badgePath)
 header.setSpaceBetween(12)
 header.addStretch()
 header.add(badgeImage, version)
