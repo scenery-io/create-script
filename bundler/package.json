@@ -2,13 +2,12 @@
 	"name": "@scenery/bundler",
 	"version": "0.1.0",
 	"description": "A bundler for Cavalry scripts",
-	"keywords": [
-		"esbuild",
-		"cavalry"
-	],
 	"license": "MIT",
 	"type": "module",
 	"bin": "build.js",
+	"engines": {
+		"node": ">=16.7.0"
+	},
 	"repository": {
 		"type": "git",
 		"url": "git+https://github.com/scenery-io/create-script.git"
@@ -20,7 +19,7 @@
 	"scripts": {
 		"test": "echo \"Error: no test specified\" && exit 1"
 	},
-	"devDependencies": {
+	"dependencies": {
 		"adm-zip": "^0.5.12",
 		"dotenv": "^16.4.5",
 		"esbuild": "^0.20.2",

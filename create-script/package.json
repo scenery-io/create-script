@@ -1,6 +1,6 @@
 {
 	"name": "@scenery/create-script",
-	"version": "0.0.1",
+	"version": "0.1.0",
 	"description": "A template for writing Cavalry scripts",
 	"license": "MIT",
 	"bin": "bin.js",
@@ -18,10 +18,6 @@
 	"homepage": "https://github.com/scenery-io/create-script#readme",
 	"scripts": {
 		"test": "echo \"Error: no test specified\" && exit 1"
-	},
-	"devDependencies": {
-		"cross-env": "^7.0.3",
-		"prettier": "^3.2.5"
 	},
 	"dependencies": {
 		"@clack/prompts": "^0.7.0",
