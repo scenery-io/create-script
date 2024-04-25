@@ -30,6 +30,8 @@ Some notes on the scripting environment in Cavalry:
 
 ## Development
 
+The `build` folder is automatically symlinked to the Cavalry scripts folder, making it available in the scripts menu. You can find the scripts folder by going to `Help > Show Scripts Folder` in Cavalry.
+
 ```
 npm run dev
 ```

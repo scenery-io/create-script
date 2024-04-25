@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 import copy from './plugins/copy.js'
 import multiloader from './plugins/multiloader.js'
 import report from './plugins/report.js'
@@ -10,6 +11,8 @@ import { resolve, join } from 'path'
 import { platform, homedir } from 'os'
 import { lstat, rm, unlink } from 'fs/promises'
 import ora from 'ora'
+import { encrypt } from './encrypt.js'
+import { pack } from './package.js'
 
 const outdir = 'build'
 const devmode = process.env.NODE_ENV === 'development'
@@ -68,6 +71,8 @@ if (devmode) {
 		console.log()
 		process.exit(1)
 	}
+	await encrypt()
+	await pack()
 }
 
 try {

@@ -19,9 +19,9 @@ A starter template for writing [Cavalry scripts](https://docs.cavalry.scenegroup
 ## Quick Start
 
 > [!TIP]
-> New to the Javascript ecosystem? Read our [getting started](./GETTING-STARTED.md) guide. The following info assumes you're familiar with [Node](https://nodejs.org/) and [npm](https://www.npmjs.com/).
+> New to the Javascript ecosystem? Read our [getting started](./PRIMER.md) guide. The following info assumes you're familiar with [Node](https://nodejs.org/) and [npm](https://www.npmjs.com/).
 
-Create a new script template by running the following command on the commandline. This will guide you through creating the template. It requires [Node](https://nodejs.org/) to be installed.
+Create a new script template by running the following command on the command line. This will guide you through creating the template. It requires [Node](https://nodejs.org/) to be installed.
 
 ```
 npm create @scenery/script
@@ -35,4 +35,4 @@ npm run dev
 
 ## Documentation
 
-Further details in the [template readme](./templates/default/).
+Further details in the [template readme](./create-script/templates/default/).

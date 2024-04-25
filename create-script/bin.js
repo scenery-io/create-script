@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 import { existsSync, readFileSync, readdirSync } from 'fs'
 import * as p from '@clack/prompts'
-import { bold, cyan, gray, underline } from 'kleur/colors'
+import { bold, green, gray, underline } from 'kleur/colors'
 import { create } from './main.js'
 import { packageManager, __dirname } from './utils.js'
 import { join } from 'path'
@@ -20,14 +20,14 @@ async function main() {
 	console.log()
 
 	p.intro(gray(`${name} ${version}`))
-	p.log.message(`Problems? ${underline(cyan('https://scenery.io/support'))}`)
+	p.log.message(`Problems? ${underline(green('https://scenery.io/support'))}`)
 
 	const script = (
 		await p.text({
 			message: "What's the name of your script?",
 			placeholder: '',
 			validate(value) {
-				if (value.length === 0) {
+				if (!value.length) {
 					return `Name is required`
 				}
 			},
@@ -58,7 +58,7 @@ async function main() {
 				message: 'Directory not empty. Continue?',
 				initialValue: false,
 			})
-			if (force !== true) {
+			if (!force) {
 				process.exit(1)
 			}
 		}
@@ -124,7 +124,7 @@ async function main() {
 		p.note(note.join('\n'), 'Next steps')
 
 		p.log.success(
-			`Want to publish ${script} on Scenery?\nLet's talk! ${underline(cyan('https://scenery.io/support'))}`
+			`Want to publish ${script} on Scenery?\nLet's talk! ${underline(green('https://scenery.io/support'))}`
 		)
 		p.outro('Done')
 	} catch (error) {

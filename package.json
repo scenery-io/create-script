@@ -1,35 +1,10 @@
 {
-	"name": "@scenery/create-script",
-	"displayName": "Script",
-	"version": "0.0.1",
-	"description": "A starter for writing Cavalry scripts",
-	"main": "index.js",
-	"bin": "bin.js",
-	"type": "module",
-	"engines": {
-		"node": ">=16.7.0"
-	},
+	"private": true,
 	"scripts": {
-		"dev": "cross-env NODE_ENV=development npm run build",
-		"release": "cross-env NODE_ENV=production npm run build",
-		"build": "node ./bin/build.js",
 		"test": "echo \"Error: no test specified\" && exit 1"
 	},
-	"repository": {
-		"type": "git",
-		"url": "git+https://github.com/scenery-io/create-script.git"
-	},
-	"license": "MIT",
-	"bugs": {
-		"url": "https://github.com/scenery-io/create-script/issues"
-	},
-	"homepage": "https://github.com/scenery-io/create-script#readme",
-	"devDependencies": {
-		"cross-env": "^7.0.3",
-		"prettier": "^3.2.5"
-	},
-	"dependencies": {
-		"@clack/prompts": "^0.7.0",
-		"kleur": "^4.1.5"
-	}
+	"workspaces": [
+		"bundler",
+		"create-script"
+	]
 }
