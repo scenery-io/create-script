@@ -1,6 +1,6 @@
 import { execSync } from 'child_process'
 import { toValidPackageName, packageManager, __dirname } from './utils.js'
-import { cpSync, readFileSync, writeFileSync } from 'fs'
+import { cpSync, readFileSync, renameSync, writeFileSync } from 'fs'
 import { join } from 'path'
 
 export function create(cwd, script, options) {
@@ -53,6 +53,7 @@ export function create(cwd, script, options) {
 			)
 		)
 	}
+	renameSync(join(cwd, 'gitignore'), join(cwd, '.gitignore'))
 	const packagePath = join(cwd, 'package.json')
 	const pkg = JSON.parse(readFileSync(packagePath, 'utf-8'))
 	pkg.name = toValidPackageName(script)
