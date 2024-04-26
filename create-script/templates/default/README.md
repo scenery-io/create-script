@@ -13,7 +13,7 @@
 -   [Debugging](#debugging)
 -   [Autocompletion](#autocompletion)
 -   [Environment Variables](#environment-variables)
--   [Typescript](#typescript)
+-   [TypeScript](#typescript)
 -   [Minification](#minification)
 
 ## Cavalry Scripting
@@ -21,9 +21,9 @@
 Some notes on the scripting environment in Cavalry:
 
 -   Every script has its own scope
--   No native support for Ecmascript modules
+-   No native support for EcmaScript modules
 -   Javascript engine is [V8 9.0](https://v8.dev/blog/v8-release-90)
--   Ecmascript version is ~[2020 (11.0)](https://262.ecma-international.org/11.0/)
+-   EcmaScript version is ~[2020 (11.0)](https://262.ecma-international.org/11.0/)
 -   No browser APIs other than [console](https://github.com/scenery-io/cavalry-types/types/browser.d.ts)
 -   Scripts can be encrypted to `.jsc` through the [JavaScript editor](https://docs.cavalry.scenegroup.co/user-interface/menus/window-menu/javascript-editor/) and the [API](https://docs.cavalry.scenegroup.co/tech-info/scripting/api-module/#encrypttexttoencryptstring--string)
 -   There's no debugger. Use [`console`](https://github.com/scenery-io/cavalry-types/types/browser.d.ts) logging instead.
@@ -75,10 +75,14 @@ After installing, import the module by using
 
 ```js
 import Name from 'module-name'
+// or
+import { thing } from 'module-name'
 ```
 
+Check the module's documentation to see what can be imported.
+
 > [!IMPORTANT]
-> Node modules with any Node- or brower APIs will not work. These APIs are not supported in Cavalry.
+> Node modules with any Node- or browser APIs will not work. These APIs are not supported in Cavalry.
 
 ## Import Files as Text
 
@@ -173,14 +177,14 @@ By default the bundler exposes:
 -   `PRODUCT_DISPLAY_NAME` which is the `displayName` in `package.json`
 -   `PRODUCT_VERSION` which is the `version` in `package.json`
 
-All variables in a `.env` file will be exposed to all Javascript or Typescript files in the `src` folder.
+All variables in a `.env` file will be exposed to all JavaScript or TypeScript files in the `src` folder.
 
 > [!CAUTION]
 > Never commit a `.env` file to the repo. This may leak your secrets. Use a `.env.example` to note the env variables that are used in the code, without their values.
 
-## Typescript
+## TypeScript
 
-This template is set up for Javascript with type checking enabled. But you can just start using `.ts` files and you're good to go. Remove `allowJs` and `checkJs` from [`tsconfig.json`](./tsconfig.json) to strictly support TypeScript only.
+This template is set up for JavaScript with type checking enabled. But you can just start using `.ts` files and you're good to go. Remove `allowJs` and `checkJs` from [`tsconfig.json`](./tsconfig.json) to strictly support TypeScript only.
 
 The [esbuild](https://github.com/evanw/esbuild) bundler doesn't do any type checking. You still have to use [`tsc`](https://www.typescriptlang.org/docs/handbook/compiler-options.html) for that. Using TypeScript with `esbuild` comes with some [caveats](https://esbuild.github.io/content-types/#typescript-caveats).
 
