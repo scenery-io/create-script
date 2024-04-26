@@ -24,7 +24,7 @@ A starter template for writing [Cavalry scripts](https://docs.cavalry.scenegroup
 Create a new script template by running the following command on the command line. This will guide you through creating the template. It requires [Node](https://nodejs.org/) to be installed.
 
 ```
-npm create @scenery/script
+npm create @scenery/script@latest
 ```
 
 Most other package managers such as `yarn` are also supported.
