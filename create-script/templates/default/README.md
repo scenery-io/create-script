@@ -1,5 +1,15 @@
 # Template Script for Cavalry
 
+> [!NOTE]
+> Did you use this template? We'd love to get a shout out on the product page or in the documentation!
+>
+> You can use [our badges](https://github.com/scenery-io/create-script/images) with a link to [https://scenery.io](https://scenery.io)
+>
+> <picture>
+> 	<source media="(prefers-color-scheme: dark)" srcset="https://github.com/scenery-io/create-script/images/Scenery Powered White.png">
+> 	<img alt="Powered by Scenery" src="https://github.com/scenery-io/create-script/images/Scenery Powered Black.png">
+> </picture>
+
 ## Contents
 
 -   [Cavalry Scripting](#cavalry-scripting)
