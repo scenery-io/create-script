@@ -1,7 +1,7 @@
 {
 	"name": "@scenery/bundler",
 	"version": "0.1.1",
-	"description": "A bundler for Cavalry scripts",
+	"description": "Bundler for Cavalry scripts",
 	"license": "MIT",
 	"type": "module",
 	"bin": "build.js",
