@@ -3,7 +3,7 @@ import copy from './plugins/copy.js'
 import multiloader from './plugins/multiloader.js'
 import report from './plugins/report.js'
 import { context, build, formatMessages } from 'esbuild'
-import fs, { ensureDir, ensureSymlink } from 'fs-extra'
+import fs from 'fs-extra'
 import { existsSync, readdirSync } from 'fs'
 import { glob } from 'glob'
 import 'dotenv/config'
@@ -85,8 +85,8 @@ try {
 		}
 		await unlink(scriptPath)
 	}
-	await ensureDir(outdir)
-	await ensureSymlink(resolve(outdir), scriptPath)
+	await fs.ensureDir(outdir)
+	await fs.ensureSymlink(resolve(outdir), scriptPath, 'junction')
 } catch (error) {
 	const formatted = await formatMessages([{ text: error.message }], {
 		kind: 'warning',
