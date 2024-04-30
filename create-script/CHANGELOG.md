@@ -12,4 +12,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 -   `Fixed` for any bug fixes
 -   `Security` in case of vulnerabilities
 
-## [UNRELEASED]
+## [0.1.1] - 2024-04-26
+
+### Fixes
+
+-   Gitignore being removed by npm
+
+## [0.1.0] - 2024-04-25
+
+Initial beta release
