@@ -35,6 +35,18 @@ Follow the prompts and run the following command in the newly created folder to 
 npm run dev
 ```
 
+## Templates
+
+You will be asked to choose one of the following templates.
+
+### Basic
+
+Best for beginners. It contains the bare minimum to provide all the features.
+
+### Full-featured
+
+Best for more experienced developers. It adds code formatting through [Prettier](https://prettier.io/), a [changelog template](./create-script/templates/default/CHANGELOG.md) and `.env` variables.
+
 ## Documentation
 
 Further details in the [template readme](./create-script/templates/default/).

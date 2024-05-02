@@ -34,21 +34,26 @@ Some notes on the scripting environment in Cavalry:
 -   No native support for EcmaScript modules
 -   Javascript engine is [V8 9.0](https://v8.dev/blog/v8-release-90)
 -   EcmaScript version is ~[2020 (11.0)](https://262.ecma-international.org/11.0/)
--   No browser APIs other than [console](https://github.com/scenery-io/cavalry-types/types/browser.d.ts)
+-   No browser APIs other than [console](#debugging)
 -   Scripts can be encrypted to `.jsc` through the [JavaScript editor](https://docs.cavalry.scenegroup.co/user-interface/menus/window-menu/javascript-editor/) and the [API](https://docs.cavalry.scenegroup.co/tech-info/scripting/api-module/#encrypttexttoencryptstring--string)
--   There's no debugger. Use [`console`](https://github.com/scenery-io/cavalry-types/types/browser.d.ts) logging instead.
+-   There's no debugger. Use [console logging](#debugging) instead.
 
 ## Development
 
-The `build` folder is automatically symlinked to the Cavalry scripts folder, making it available in the scripts menu. You can find the scripts folder by going to `Help > Show Scripts Folder` in Cavalry.
+> [!INFO]
+> The `build` folder is automatically symlinked to the Cavalry scripts folder, making it available in the scripts menu. You can find the scripts folder by going to `Help > Show Scripts Folder` in Cavalry.
+
+On the command line run the following command in your script's folder.
 
 ```
 npm run dev
 ```
 
-This will start watching your source files and automatically builds into the `build` folder on every file change.
+This will start watching your source files and automatically builds into the `build` folder on every file change. Press `Ctrl-C` to stop the watch process.
 
 ## Release
+
+On the command line run the following command in your script's folder.
 
 ```
 npm run release
@@ -158,17 +163,17 @@ console.error(msg: string)
 
 ### Debug
 
-Print a message to the terminal when Cavalry is launched from the command line.
+Print a message to the console when Cavalry is launched from the command line.
 
 ```ts
 console.debug(msg: string)
 ```
 
-On Windows the debug console is opened on start and remains open.
+On Windows the console is opened on start and remains open.
 
-To open the Debug Console on Mac, run this command from the Terminal.
+To open the console on Mac, run this command from the Terminal
 
-```bash
+```
 /Applications/Cavalry.app/Contents/MacOS/Cavalry
 ```
 
@@ -178,14 +183,14 @@ Autocompletion for the Cavalry API is enabled for all JavaScript and TypeScript 
 
 ## Environment Variables
 
-All variables are replaced by their values upon bundling.
+All variables are replaced by their values at build time.
 
 By default the bundler exposes:
 
 -   `DEVMODE` is `true` when `NODE_ENV` is `development`
--   `PRODUCT_NAME` which is the `name` in `package.json`
--   `PRODUCT_DISPLAY_NAME` which is the `displayName` in `package.json`
--   `PRODUCT_VERSION` which is the `version` in `package.json`
+-   `PRODUCT_NAME` which is the `name` in [`package.json`](./package.json)
+-   `PRODUCT_DISPLAY_NAME` which is the `displayName` in [`package.json`](./package.json)
+-   `PRODUCT_VERSION` which is the `version` in [`package.json`](./package.json)
 
 All variables in a `.env` file will be exposed to all JavaScript or TypeScript files in the `src` folder.
 
