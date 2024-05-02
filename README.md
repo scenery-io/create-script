@@ -45,7 +45,7 @@ Best for beginners. It contains the bare minimum to provide all the features.
 
 ### Full-featured
 
-Best for more experienced developers. It adds code formatting through [Prettier](https://prettier.io/), a [changelog template](./create-script/templates/default/CHANGELOG.md) and `.env` variables.
+Best for more experienced developers. It adds code formatting through [Prettier](https://prettier.io/), a [changelog template](./create-script/templates/default/CHANGELOG.md) and a `.env.example` file.
 
 ## Documentation
 

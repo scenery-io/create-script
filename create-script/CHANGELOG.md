@@ -12,6 +12,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 -   `Fixed` for any bug fixes
 -   `Security` in case of vulnerabilities
 
+## [0.1.3] - 2024-05-02
+
+### Fixed
+
+-   Template script not being renamed to chosen name
+-   Copying not being forced for existing folders
+-   Spinner not showing up because of sync operations
+
 ## [0.1.2] - 2024-04-30
 
 ### Changed
@@ -22,7 +30,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixes
 
--   Gitignore being removed by npm
+-   Gitignore being removed by `npm`
 
 ## [0.1.0] - 2024-04-25
 
