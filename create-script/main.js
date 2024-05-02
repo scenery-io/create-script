@@ -19,6 +19,7 @@ export function create(cwd, script, options) {
 	cpSync(templatePath, cwd, {
 		recursive: true,
 		filter: (path) => !ignore.find((entry) => path.includes(entry)),
+		options: { force: true },
 	})
 	renameSync(join(cwd, 'src', 'Script.js'), join(cwd, 'src', `${script}.js`))
 	if (!options.examples) {
