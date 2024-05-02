@@ -2,12 +2,13 @@ import { execSync } from 'child_process'
 import { toValidPackageName, packageManager, __dirname } from './utils.js'
 import { cpSync, readFileSync, renameSync, writeFileSync } from 'fs'
 import { join } from 'path'
+import { readFileSync, renameSync } from 'fs'
 
 export function create(cwd, script, options) {
 	const templatePath = join(__dirname, 'templates', 'default')
 	const ignore = ['package-lock.json']
 	if (!options.examples) {
-		ignore.push('text', 'icons/', 'modules/', 'Script.js')
+		ignore.push('text', 'icons/', 'modules/')
 	}
 	if (!options.license) {
 		ignore.push('LICENSE.txt')
@@ -19,6 +20,7 @@ export function create(cwd, script, options) {
 		recursive: true,
 		filter: (path) => !ignore.find((entry) => path.includes(entry)),
 	})
+	renameSync(join(cwd, 'src', 'Script.js'), join(cwd, 'src', `${script}.js`))
 	if (!options.examples) {
 		writeFileSync(
 			join(cwd, 'src', `${script}.js`),
