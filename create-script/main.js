@@ -1,10 +1,10 @@
 import { execSync } from 'child_process'
 import { toValidPackageName, packageManager, __dirname } from './utils.js'
-import { cpSync, readFileSync, renameSync, writeFileSync } from 'fs'
 import { join } from 'path'
-import { readFileSync, renameSync } from 'fs'
+import { cp, rename, writeFile } from 'fs/promises'
+import { readFileSync } from 'fs'
 
-export function create(cwd, script, options) {
+export async function create(cwd, script, options) {
 	const templatePath = join(__dirname, 'templates', 'default')
 	const ignore = ['package-lock.json']
 	if (!options.examples) {
@@ -16,22 +16,32 @@ export function create(cwd, script, options) {
 	if (options.template === 'basic') {
 		ignore.push('.env.example', '.prettierrc.json', 'CHANGELOG.md')
 	}
-	cpSync(templatePath, cwd, {
+	await cp(templatePath, cwd, {
 		recursive: true,
 		filter: (path) => !ignore.find((entry) => path.includes(entry)),
 		options: { force: true },
 	})
-	renameSync(join(cwd, 'src', 'Script.js'), join(cwd, 'src', `${script}.js`))
+	await rename(
+		join(cwd, 'src', 'Script.js'),
+		join(cwd, 'src', `${script}.js`)
+	)
+	await rename(join(cwd, 'gitignore'), join(cwd, '.gitignore'))
+	const packagePath = join(cwd, 'package.json')
+	const pkg = JSON.parse(readFileSync(packagePath, 'utf-8'))
+	pkg.name = toValidPackageName(script)
+	pkg.displayName = script
+	await writeFile(packagePath, JSON.stringify(pkg, undefined, 2))
+
 	if (!options.examples) {
-		writeFileSync(
+		await writeFile(
 			join(cwd, 'src', `${script}.js`),
-			'console.log(PRODUCT_NAME, PRODUCT_VERSION)'
+			'console.log(PRODUCT_DISPLAY_NAME, PRODUCT_VERSION)'
 		)
 	}
 	if (options.template === 'basic') {
 		const extensionsPath = join(cwd, '.vscode', 'extensions.json')
 		const settingsPath = join(cwd, '.vscode', 'settings.json')
-		writeFileSync(
+		await writeFile(
 			extensionsPath,
 			JSON.stringify(
 				{
@@ -41,7 +51,7 @@ export function create(cwd, script, options) {
 				2
 			)
 		)
-		writeFileSync(
+		await writeFile(
 			settingsPath,
 			JSON.stringify(
 				{
@@ -56,11 +66,5 @@ export function create(cwd, script, options) {
 			)
 		)
 	}
-	renameSync(join(cwd, 'gitignore'), join(cwd, '.gitignore'))
-	const packagePath = join(cwd, 'package.json')
-	const pkg = JSON.parse(readFileSync(packagePath, 'utf-8'))
-	pkg.name = toValidPackageName(script)
-	pkg.displayName = script
-	writeFileSync(packagePath, JSON.stringify(pkg, undefined, 2))
 	execSync(`cd "${cwd}" && ${packageManager} install`)
 }

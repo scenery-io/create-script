@@ -113,7 +113,7 @@ async function main() {
 	const spinner = p.spinner()
 	try {
 		spinner.start(`Installing via ${packageManager}`)
-		create(cwd, script, options)
+		await create(cwd, script, options)
 		spinner.stop(`Installed via ${packageManager}`)
 
 		const note = []
