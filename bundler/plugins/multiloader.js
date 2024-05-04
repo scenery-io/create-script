@@ -10,7 +10,7 @@ export default function (options = { name: '' }) {
 				BASE64: /\?base64$/,
 				TEXT: /\?text$/,
 			}
-			const assetsName = `${options.name}_assets`
+			const assetsFolder = `${options.name}_assets`
 			build.onResolve({ filter: /\.jpg|png$/i }, (args) => {
 				return {
 					namespace: 'copy-file',
@@ -23,9 +23,10 @@ export default function (options = { name: '' }) {
 				async (args) => {
 					let warnings = []
 					const outdir = build.initialOptions.outdir
-					const assetsPath = join(outdir, assetsName)
+					const assetsPath = join(outdir, assetsFolder)
 					const filename = basename(args.path)
 					const ext = extname(filename)
+					// TODO: Support uppercase extensions
 					if (ext === '.png' || ext === '.jpg') {
 						const importdir = dirname(args.path)
 						const filename2x = filename.replace(ext, `@2x${ext}`)
@@ -44,8 +45,11 @@ export default function (options = { name: '' }) {
 					}
 					await copy(args.path, join(assetsPath, filename))
 					return {
-						contents: join(assetsName, filename),
-						loader: 'text',
+						contents:
+							'export default `${ui.scriptLocation}/' +
+							`${assetsFolder}/${filename}` +
+							'`',
+						loader: 'js',
 						warnings,
 					}
 				}
