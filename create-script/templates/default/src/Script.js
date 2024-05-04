@@ -1,4 +1,4 @@
-import badge from './icons/badge@2x.png'
+import badgePath from './icons/badge@2x.png'
 import { createShape } from './modules/shape.js'
 // Import anything as text by appending `?text`
 import markdown from './text/publish.md?text'
@@ -12,7 +12,6 @@ const header = new ui.HLayout()
 const content = new ui.VLayout()
 
 // The `badge` image is copied to the assets folder and imported as a path
-const badgePath = `${ui.scriptLocation}/${badge}`
 console.log(badgePath)
 const badgeImage = new ui.Image(badgePath)
 header.setSpaceBetween(12)

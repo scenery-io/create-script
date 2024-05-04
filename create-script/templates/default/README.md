@@ -70,12 +70,12 @@ All `.js` and `.ts` files in the root of the `src` folder are considered an entr
 
 ## Import Images
 
-Importing an image (.png/.jpg) will copy the image to the `Script_assets` folder and import its path. Use the import variable to construct the path to the image.
+Importing a `.jpg` or `.png` will copy the image to the `Script_assets` folder and import its path. The path includes `ui.scriptLocation` so you can use it directly without needing to create the relative path.
 
 ```js
-import icon from './icons/scenery.png'
-const imagePath = `${ui.scriptLocation}/${icon}`
-const image = new ui.Image(imagePath)
+import iconPath from './icons/scenery.png'
+// `iconPath` becomes `${ui.scriptLocation}/Script_assets/scenery.png`
+const image = new ui.Image(iconPath)
 ```
 
 ## Import Node Modules
