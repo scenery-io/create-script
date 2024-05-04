@@ -12,9 +12,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 -   `Fixed` for any bug fixes
 -   `Security` in case of vulnerabilities
 
+## [0.1.2] - 2024-05-04
+
+### Fixed
+
+-   Imported image paths using OS separator
+
+### Changed
+
+-   Imported images include `ui.scriptLocation` in the path
+
 ## [0.1.1] - 2024-04-26
 
-### Fixes
+### Fixed
 
 -   Symlinks on Windows needing admin rights
 
