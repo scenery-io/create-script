@@ -16,10 +16,17 @@ export async function create(cwd, script, options) {
 	if (options.template === 'basic') {
 		ignore.push('.env.example', '.prettierrc.json', 'CHANGELOG.md')
 	}
+	console.log(ignore)
 	await cp(templatePath, cwd, {
 		recursive: true,
-		filter: (path) => !ignore.find((entry) => path.includes(entry)),
 		force: true,
+		filter: (path) => {
+			const include = !ignore.find((entry) => path.includes(entry))
+			if (!include) {
+				console.log(path)
+			}
+			return include
+		},
 	})
 	await rename(
 		join(cwd, 'src', 'Script.js'),
