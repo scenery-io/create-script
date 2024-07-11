@@ -19,7 +19,7 @@ export async function create(cwd, script, options) {
 	await cp(templatePath, cwd, {
 		recursive: true,
 		filter: (path) => !ignore.find((entry) => path.includes(entry)),
-		options: { force: true },
+		force: true,
 	})
 	await rename(
 		join(cwd, 'src', 'Script.js'),
