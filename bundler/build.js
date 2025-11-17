@@ -42,6 +42,7 @@ const options = {
 	bundle: true,
 	target: ['es2020'],
 	platform: 'neutral',
+	mainFields: ['main', 'module', 'browser'],
 	entryPoints: await glob('src/*.*(js|ts)'),
 	minifyWhitespace: !devmode,
 	minifyIdentifiers: !devmode,
