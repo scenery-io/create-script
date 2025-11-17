@@ -12,6 +12,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 -   `Fixed` for any bug fixes
 -   `Security` in case of vulnerabilities
 
+## [0.1.3] - 2025-11-17
+
+### Fixed
+
+-   Missing `mainFields` option in `esbuild`
+
 ## [0.1.2] - 2024-05-04
 
 ### Fixed
