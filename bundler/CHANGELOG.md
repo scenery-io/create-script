@@ -12,6 +12,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 -   `Fixed` for any bug fixes
 -   `Security` in case of vulnerabilities
 
+## [UNRELEASED]
+
+### Fixed
+
+-   Error when `static/_assets` folder did not exist
+-   Empty `static/_assets` folder getting copied to `build` folder
+
 ## [0.1.3] - 2025-11-17
 
 ### Fixed

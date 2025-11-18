@@ -1,6 +1,7 @@
 import { basename } from 'path'
 import crypto from 'crypto'
 import fs from 'fs'
+import { readdir } from 'fs/promises'
 
 // Based on esbuild-copy-static-files with the added option to ignore files
 // https://github.com/nickjj/esbuild-copy-static-files/
@@ -10,7 +11,11 @@ export default function (options = {}) {
 		setup(build) {
 			const src = options.src || './static'
 			const dest = options.dest || './public'
-			build.onEnd(() =>
+			build.onEnd(async () => {
+				const files = await readdir(src).catch(() => {})
+				if (!files?.length) {
+					return
+				}
 				fs.cpSync(src, dest, {
 					dereference: options.dereference || true,
 					errorOnExist: options.errorOnExist || false,
@@ -22,7 +27,7 @@ export default function (options = {}) {
 					recursive: options.recursive || true,
 					ignore: options.ignore || [],
 				})
-			)
+			})
 		},
 	}
 }
