@@ -86,10 +86,6 @@ async function main() {
 						},
 					],
 				}),
-			license: () =>
-				p.confirm({
-					message: 'Add standard software license?',
-				}),
 		},
 		{ onCancel: () => process.exit(1) }
 	)
@@ -103,9 +99,6 @@ async function main() {
 	}
 	if (options.template === 'full') {
 		choices.push('✔ Full-featured template')
-	}
-	if (options.license) {
-		choices.push('✔ Add standard software license')
 	}
 
 	p.note(choices.join('\n'), 'Choices')

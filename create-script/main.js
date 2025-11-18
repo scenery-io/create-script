@@ -10,9 +10,6 @@ export async function create(cwd, script, options) {
 	if (!options.examples) {
 		ignore.push('text', 'icons/', 'modules/')
 	}
-	if (!options.license) {
-		ignore.push('LICENSE.txt')
-	}
 	if (options.template === 'basic') {
 		ignore.push('.env.example', '.prettierrc.json', 'CHANGELOG.md')
 	}
