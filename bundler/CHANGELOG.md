@@ -18,6 +18,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 -   Error when `static/_assets` folder did not exist
 -   Empty `static/_assets` folder getting copied to `build` folder
+-   Script that reports bundle errors did not overwrite the original script
 
 ## [0.1.3] - 2025-11-17
 

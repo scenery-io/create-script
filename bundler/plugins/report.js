@@ -7,7 +7,7 @@ export default function () {
 		setup(build) {
 			build.onEnd((result) => {
 				const errors = result.errors.map(
-					(error) => `console.error("${error.text}")`
+					(error) => `console.error(${JSON.stringify(error.text)})`
 				)
 				if (!errors.length) {
 					return
@@ -18,10 +18,10 @@ export default function () {
 				build.initialOptions.entryPoints.forEach((entryPath) => {
 					const filePath = join(
 						build.initialOptions.outdir,
-						basename(entryPath)
+						basename(entryPath).replace('.ts', '.js')
 					)
-					console.log(filePath)
 					writeFile(filePath, errors.join('\n'), 'utf-8')
+					console.log(`Errors written to ${filePath}`)
 				})
 			})
 		},
