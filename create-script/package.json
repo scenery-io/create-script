@@ -1,6 +1,6 @@
 {
 	"name": "@scenery/create-script",
-	"version": "0.1.7",
+	"version": "0.1.8",
 	"description": "Starter template for writing Cavalry scripts",
 	"license": "MIT",
 	"bin": "bin.js",
