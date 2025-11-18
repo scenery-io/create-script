@@ -13,13 +13,16 @@ export async function create(cwd, script, options) {
 	if (options.template === 'basic') {
 		ignore.push('.env.example', '.prettierrc.json', 'CHANGELOG.md')
 	}
-	console.log({ ignore })
 	await cp(templatePath, cwd, {
 		force: true,
 		recursive: true,
 		filter: async (path) => {
-			const include = !ignore.find((entry) => path.includes(entry))
-			console.log({ include, path })
+			if (path === templatePath) {
+				return true
+			}
+			const include = !ignore.some((entry) =>
+				path.replace(templatePath, '').includes(entry)
+			)
 			return include
 		},
 	})
