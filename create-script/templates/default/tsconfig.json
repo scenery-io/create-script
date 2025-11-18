@@ -6,6 +6,7 @@
 		"checkJs": true,
 		"noEmit": true,
 		"types": ["@scenery/cavalry-types"],
-		"esModuleInterop": true
+		"esModuleInterop": true,
+		"resolveJsonModule": true
 	}
 }
