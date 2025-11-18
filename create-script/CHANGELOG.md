@@ -14,6 +14,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [UNRELEASED]
 
+### Changed
+
+-   Changelog header mentions deviation from semver
+
 ### Removed
 
 -   Standard software license
