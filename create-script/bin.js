@@ -105,9 +105,9 @@ async function main() {
 
 	const spinner = p.spinner()
 	try {
-		spinner.start(`Installing via ${packageManager}`)
+		spinner.start(`Installing with ${packageManager}`)
 		await create(cwd, script, options)
-		spinner.stop(`Installed via ${packageManager}`)
+		spinner.stop(`Installed with ${packageManager}`)
 
 		const note = []
 		if (cwd !== '.') {
