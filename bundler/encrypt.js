@@ -2,6 +2,7 @@ import { temporaryWrite } from 'tempy'
 import Watcher from 'watcher'
 import { resolve } from 'path'
 import { readFileSync, globSync } from 'fs'
+import { rename } from 'fs/promises'
 import ora from 'ora'
 
 export async function encrypt() {
@@ -64,6 +65,12 @@ export async function encrypt() {
 		}, true)
 		if (!encrypted) {
 			throw new Error('Failed to encrypt')
+		}
+		for (const entry of paths) {
+			await rename(
+				entry.inputPath,
+				entry.inputPath.replace('.js', ' (unencrypted).js')
+			)
 		}
 		spinner.succeed('Encrypted')
 	} catch (error) {
