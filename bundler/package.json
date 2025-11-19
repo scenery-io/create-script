@@ -6,7 +6,7 @@
 	"type": "module",
 	"bin": "build.js",
 	"engines": {
-		"node": ">=16.7.0"
+		"node": ">=24.3.0"
 	},
 	"repository": {
 		"type": "git",
@@ -20,13 +20,11 @@
 		"test": "echo \"Error: no test specified\" && exit 1"
 	},
 	"dependencies": {
-		"adm-zip": "^0.5.12",
-		"dotenv": "^16.4.5",
-		"esbuild": "^0.20.2",
-		"fs-extra": "^11.2.0",
-		"glob": "^10.3.12",
-		"node-fetch": "^3.3.2",
-		"ora": "^8.0.1",
+		"adm-zip": "^0.5.16",
+		"dotenv": "^17.2.3",
+		"esbuild": "^0.27.0",
+		"fs-extra": "^11.3.2",
+		"ora": "^9.0.0",
 		"tempy": "^3.1.0",
 		"watcher": "^2.3.1"
 	}

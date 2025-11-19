@@ -6,7 +6,7 @@
 	"bin": "bin.js",
 	"type": "module",
 	"engines": {
-		"node": ">=16.7.0"
+		"node": ">=22.3.0"
 	},
 	"repository": {
 		"type": "git",
@@ -20,7 +20,7 @@
 		"test": "echo \"Error: no test specified\" && exit 1"
 	},
 	"dependencies": {
-		"@clack/prompts": "^0.7.0",
+		"@clack/prompts": "^0.11.0",
 		"kleur": "^4.1.5"
 	}
 }

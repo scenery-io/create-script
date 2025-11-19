@@ -1,9 +1,7 @@
 import { temporaryWrite } from 'tempy'
 import Watcher from 'watcher'
-import fetch from 'node-fetch'
-import { glob } from 'glob'
 import { resolve } from 'path'
-import { readFileSync } from 'fs'
+import { readFileSync, globSync } from 'fs'
 import ora from 'ora'
 
 export async function encrypt() {
@@ -11,7 +9,7 @@ export async function encrypt() {
 	const failed = 'Unable to encrypt. Is Stallion running in Cavalry?'
 	spinner.start()
 	try {
-		const entryPoints = await glob('build/*.js')
+		const entryPoints = globSync('build/*.js')
 		if (!entryPoints.length) {
 			throw new Error('No scripts found in build folder')
 		}

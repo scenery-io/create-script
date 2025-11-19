@@ -5,7 +5,7 @@ import report from './plugins/report.js'
 import { context, build, formatMessages } from 'esbuild'
 import fs from 'fs-extra'
 import { existsSync, readdirSync } from 'fs'
-import { glob } from 'glob'
+import { globSync } from 'fs'
 import 'dotenv/config'
 import { resolve, join } from 'path'
 import { platform, homedir } from 'os'
@@ -43,7 +43,7 @@ const options = {
 	target: ['es2020'],
 	platform: 'neutral',
 	mainFields: ['main', 'module', 'browser'],
-	entryPoints: await glob('src/*.*(js|ts)'),
+	entryPoints: globSync('src/*.*(js|ts)'),
 	minifyWhitespace: !devmode,
 	minifyIdentifiers: !devmode,
 	plugins: [
