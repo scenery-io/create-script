@@ -11,7 +11,7 @@
 	},
 	"devDependencies": {
 		"@scenery/bundler": "^1.0.0",
-		"@scenery/cavalry-types": "^0.5.0",
+		"@scenery/cavalry-types": "^1.0.0",
 		"cross-env": "^10.1.0",
 		"dotenv": "^17.2.3",
 		"prettier": "^3.2.5"
