@@ -12,6 +12,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 -   `Fixed` for any bug fixes
 -   `Security` in case of vulnerabilities
 
+## [1.2.0] - 2026-06-10
+
+### Changed
+
+-   Updates template dependency `@scenery/bundler` to 1.1.0
+
 ## [1.1.0] - 2026-05-06
 
 ### Changed
