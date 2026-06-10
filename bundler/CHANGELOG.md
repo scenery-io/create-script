@@ -17,7 +17,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 -   Support for `.env.development` and `.env.production` files
--   Ability to set the parent folder for env files
+-   Flag to set the parent folder for env files
 
 ## [1.0.0] - 2025-11-19
 
