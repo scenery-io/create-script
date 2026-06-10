@@ -12,6 +12,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 -   `Fixed` for any bug fixes
 -   `Security` in case of vulnerabilities
 
+## [1.1.0] - 2026-06-10
+
+### Added
+
+-   Support for `.env.development` and `.env.production` files
+-   Ability to set the parent folder for env files
+
 ## [1.0.0] - 2025-11-19
 
 ### Changed
@@ -25,7 +32,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 -   Error when `static/_assets` folder did not exist
 -   Empty `static/_assets` folder getting copied to `build` folder
--   Script that reports bundle errors did not overwrite the original script
+-   Plugin that reports bundle errors did not overwrite the original script
 
 ## [0.1.3] - 2025-11-17
 
