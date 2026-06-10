@@ -6,13 +6,13 @@ import { context, build, formatMessages } from 'esbuild'
 import fs from 'fs-extra'
 import { existsSync, readdirSync } from 'fs'
 import { globSync } from 'fs'
-import 'dotenv/config'
 import { resolve, join } from 'path'
 import { platform, homedir } from 'os'
 import { lstat, rm, unlink } from 'fs/promises'
 import ora from 'ora'
 import { encrypt } from './encrypt.js'
 import { pack } from './package.js'
+import { loadEnvFile } from 'process'
 
 const outdir = 'build'
 const devmode = process.env.NODE_ENV === 'development'
@@ -20,6 +20,18 @@ const { name, displayName, version } = await fs.readJson('./package.json')
 const isMac = platform() === 'darwin'
 const appData = isMac ? '/Library/Application Support' : '/AppData/Roaming'
 const scriptPath = join(homedir(), appData, 'Cavalry', 'Scripts', displayName)
+
+const [arg, path] = process.argv.slice(2)
+const envRoot = (arg === '--env-root' && path) || process.cwd()
+const envPath = join(envRoot, `.env.${process.env.NODE_ENV}`)
+const fallbackPath = join(envRoot, '.env')
+if (existsSync(envPath)) {
+	loadEnvFile(envPath)
+	console.log(`Loaded env ${envPath}\n`)
+} else if (existsSync(fallbackPath)) {
+	loadEnvFile(fallbackPath)
+	console.log(`Loaded env ${fallbackPath}\n`)
+}
 
 const define = {
 	DEVMODE: JSON.stringify(devmode),

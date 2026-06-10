@@ -41,7 +41,7 @@ Some notes on the scripting environment in Cavalry:
 ## Development
 
 > [!INFO]
-> The `build` folder is automatically symlinked to the Cavalry scripts folder, making it available in the scripts menu. You can find the scripts folder by going to `Help > Show Scripts Folder` in Cavalry.
+> The `build` folder is automatically symlinked to the Cavalry scripts folder, making it available in the scripts menu. Find the scripts folder by going to `Scripts > Show Scripts Folder` in Cavalry.
 
 On the command line run the following command in your script's folder.
 
@@ -183,7 +183,7 @@ Autocompletion for the Cavalry API is enabled for all JavaScript and TypeScript 
 
 ## Environment Variables
 
-All variables are replaced by their values at build time.
+All env variables are replaced with their values at build time.
 
 By default the bundler exposes:
 
@@ -192,10 +192,25 @@ By default the bundler exposes:
 -   `PRODUCT_DISPLAY_NAME` which is the `displayName` in [`package.json`](./package.json)
 -   `PRODUCT_VERSION` which is the `version` in [`package.json`](./package.json)
 
-All variables in a `.env` file will be exposed to all JavaScript or TypeScript files in the `src` folder.
+### Env Files
+
+Use a `.env` file to expose environment variables to all JavaScript or TypeScript files in the `src` folder.
 
 > [!CAUTION]
-> Never commit a `.env` file to the repo. This may leak your secrets. Use a `.env.example` to note the env variables that are used in the code, without their values.
+> Never commit a `.env` file to the repo. This may leak your secrets. Use a `.env.example` file to write down the env variables that are used in the code, without their values.
+
+Use `.env.development` and `.env.production` files to define variables for each environment. The [`npm run dev`](#development) and [`npm run release`](#release) commands will load the respective env file. If the `.env.development` and `.env.production` files exist, a `.env` file will be ignored.
+
+### Env Root
+
+To share env variables across multiple scripts (for example, in a monorepo) use the `--env-root` flag to set a relative or absolute path pointing to the parent folder of the env files. Append the flag to the `dev` and `release` scripts in [`package.json`](./package.json).
+
+```json
+"scripts": {
+	"dev": "cross-env NODE_ENV=development npx bundler --env-root ../..",
+	"release": "cross-env NODE_ENV=production npx bundler --env-root ../..",
+}
+```
 
 ## TypeScript
 
