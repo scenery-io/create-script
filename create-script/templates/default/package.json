@@ -10,7 +10,7 @@
 		"test": "echo \"Error: no test specified\" && exit 1"
 	},
 	"devDependencies": {
-		"@scenery/bundler": "^1.0.0",
+		"@scenery/bundler": "^1.1.0",
 		"@scenery/cavalry-types": "^1.0.0",
 		"cross-env": "^10.1.0",
 		"prettier": "^3.2.5"
