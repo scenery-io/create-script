@@ -4,7 +4,9 @@
 	"description": "Bundler for Cavalry scripts",
 	"license": "MIT",
 	"type": "module",
-	"bin": "build.js",
+	"bin": {
+		"bundler": "build.js"
+	},
 	"engines": {
 		"node": ">=24.3.0"
 	},
